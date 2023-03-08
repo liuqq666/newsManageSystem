@@ -1,9 +1,6 @@
 const ProductModel = require("../../models/ProductModel")
 
-/*
- * @作者: kerwin
- * @公众号: 大前端私房菜
- */
+
 const ProductService = {
     add:async ({title,introduction,detail,cover,editTime})=>{
         return ProductModel.create({

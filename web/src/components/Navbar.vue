@@ -1,6 +1,4 @@
-<!--
- * @作者: kerwin
--->
+
 <template>
     <div class="navbar">
         <el-menu

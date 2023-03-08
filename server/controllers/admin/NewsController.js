@@ -1,9 +1,5 @@
 const NewsService = require("../../services/admin/NewsService")
 
-/*
- * @作者: kerwin
- * @公众号: 大前端私房菜
- */
 const NewsController = {
     add:async (req,res)=>{
         // console.log(req.file,req.body)

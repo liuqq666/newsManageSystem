@@ -1,9 +1,5 @@
 const NewsModel = require("../../models/NewsModel")
 
-/*
- * @作者: kerwin
- * @公众号: 大前端私房菜
- */
 const NewsService = {
     add:async ({title,content,category,cover,isPublish,editTime})=>{
         return NewsModel.create({

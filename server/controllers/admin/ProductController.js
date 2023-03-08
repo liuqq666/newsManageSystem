@@ -1,9 +1,5 @@
 const ProductService = require("../../services/admin/ProductService")
 
-/*
- * @作者: kerwin
- * @公众号: 大前端私房菜
- */
 const ProductController = {
     add:async (req,res)=>{
         // console.log(req.file,req.body)

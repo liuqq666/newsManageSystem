@@ -1,9 +1,6 @@
 const UserService = require("../../services/admin/UserService")
 const JWT = require("../../util/JWT")
-/*
- * @作者: kerwin
- * @公众号: 大前端私房菜
- */
+ 
 const UserController = {
     login: async (req, res) => {
         // console.log(req.body)

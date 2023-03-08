@@ -1,9 +1,6 @@
 const UserModel = require("../../models/UserModel")
 
-/*
- * @作者: kerwin
- * @公众号: 大前端私房菜
- */
+
 const UserService = {
     login:async({username,password})=>{
         return UserModel.find({

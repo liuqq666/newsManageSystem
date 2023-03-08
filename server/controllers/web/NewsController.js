@@ -1,9 +1,6 @@
 const NewsService = require("../../services/web/NewsService")
 
-/*
- * @作者: kerwin
- * @公众号: 大前端私房菜
- */
+
 const NewsController = {
 
     getList:async (req,res)=>{

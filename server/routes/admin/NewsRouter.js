@@ -1,7 +1,4 @@
-/*
- * @作者: kerwin
- * @公众号: 大前端私房菜
- */
+
 var express = require('express');
 const NewsController = require('../../controllers/admin/NewsController');
 var NewsRouter = express.Router();

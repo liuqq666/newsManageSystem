@@ -37,6 +37,11 @@
 import { reactive,ref } from "vue";
 import {loadFull} from "tsparticles"
 import { useRouter } from "vue-router";
+import axios from 'axios'
+
+
+
+
 //<button @click="handleLogin">login</button>
 const handleLogin = ()=>{
     localStorage.setItem('token','lqq')
@@ -65,9 +70,11 @@ const submitForm = function(){
     //校验表单
     loginFormRef.value.validate((vaild)=>{
         if(vaild){
-            console.log(loginForm);
-            localStorage.setItem('token','lqq');
-            router.push('/index')
+            // localStorage.setItem('token','lqq');
+            axios.post("/adminapi/user/login",loginForm).then(res=>{
+                console.log(res.data );
+            })
+            // router.push('/index')
         }
     })
     //提交数据

@@ -1,6 +1,6 @@
 
 const jsonwebtoken = require("jsonwebtoken")
-const secret = "kerwin"
+const secret = "lqq"
 const JWT = {
     generate(value,exprires){
         return jsonwebtoken.sign(value,secret,{expiresIn:exprires})

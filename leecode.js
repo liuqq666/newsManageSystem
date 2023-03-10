@@ -1,23 +1,30 @@
-var constructArr = function(a) {
-    let ans = [];
-    let left = new Array(a.length+1).fill(1);
-     let right = new Array(a.length+1).fill(1);
-    left[0] = 1;
-    left[1] = a[0];
-    for(let i = 2; i <= a.length; i++){
-        left[i] = left[i-1] * a[i-1];
-    }
-    right[right.length-1] = 1;
-    right[right.length-2] = a[a.length-1];
-    for(let i = right.length-3; i >= 0; i--){
-        right[i] = right[i+1] * a[i];
-    }
-    for(let i = 0;i<a.length;i++){
-        ans[i] = right[i+1]*left[i]
+var spiralOrder = function(matrix) {
+    if(matrix.length == 0) return [];
+    let left = 0,top = 0, right = matrix[0].length-1,bottom = matrix.length-1,ans = [];
+    while( true ){
+        for(let i = left; i <= right; i++){
+            ans.push(matrix[top][i])
+        }
+        if(++top > bottom)break;
+
+        for(let i = top; i <= bottom; i++){
+            ans.push(matrix[i][right])
+        }
+        if(--right < left )break;
+
+        for(let i = right; i >= left; i--){
+            ans.push(matrix[bottom][i])
+        }
+        if(--bottom < top)break;
+
+        for(let i = bottom; i >= top; i--){
+            ans.push(matrix[i][left])
+        }
+        if( ++left > right)break;
     }
     return ans;
 };
 
-let a = [1, 2, 3, 4, 5];
+let matrix = [[1,2,3],[4,5,6],[7,8,9]]
 
-constructArr(a)
+console.log(spiralOrder(matrix));

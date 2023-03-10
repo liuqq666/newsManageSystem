@@ -1,58 +1,79 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Login from '../views/Login.vue'
+import { createRouter, createWebHashHistory } from 'vue-router'
+import Login from '../views/Login.vue' //@ 
 import MainBox from '../views/MainBox.vue'
-import routerConfig from './config'
-import store from '@/store'
-
-
+import RoutesConfig from './config'
+import store from '../store/index'
 const routes = [
   {
-    path:'/login',
-    name:"login",
-    component:Login
-  },{
-    path:'/mainbox',
-    name:"mainbox",
-    component:MainBox
+    path: "/login",
+    name: "login",
+    component: Login
+  },
+  {
+    path: "/mainbox",
+    name: "mainbox",
+    component: MainBox
   }
+  //mainbox的嵌套路由, 后面根据权限动态添加
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(),
   routes
 })
-
-
-
-router.beforeEach((to,from,next)=>{
-  if(to.name === 'login'){
+//每次路由跳转之前
+router.beforeEach((to, from, next) => {
+  if (to.name === "login") {
     next()
-  }else{
-    if(!localStorage.getItem("token")){
+  } else {
+    //如果授权(已经登录过了) next()
+    //未授权, 重定向到login
+    if (!localStorage.getItem("token")) {
       next({
-        path:'/login'
+        path: "/login"
       })
-    }else{
-     if(!store.state.isFisrtToRouter){
-      configRouter()
-      next({
-        path:to.fullPath
-      })
-      store.commit('changeIsFisrtToRouter', true)
-     }else{
-      next()
-     }
+    } else {
+      if (!store.state.isGetterRouter) {
+
+        //删除所有的嵌套路由
+        //mainbox
+        router.removeRoute("mainbox")
+
+        ConfigRouter()
+        next({
+          path: to.fullPath
+        })
+      }else{
+        next()
+      }
     }
   }
 })
 
+const ConfigRouter = () => {
 
-const configRouter  = ()=>{
-  routerConfig.forEach((item)=>{
-    router.addRoute('mainbox',item)
+  if(!router.hasRoute("mainbox")){
+    router.addRoute(  {
+      path: "/mainbox",
+      name: "mainbox",
+      component: MainBox
+    })
+  }
+
+  RoutesConfig.forEach(item => {
+    checkPermission(item) && router.addRoute("mainbox", item)
   })
+
+  //改变isGetterRouter =  true
+
+  store.commit("changeGetterRouter",true)
 }
 
-
+const checkPermission = (item)=>{
+  if(item.requireAdmin){
+    return store.state.userInfo.role===1
+  }
+  return true
+}
 
 export default router

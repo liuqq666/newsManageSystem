@@ -15,7 +15,7 @@ const UserController = {
         } else {
 
             //生成token
-            const token = JWT.generate({
+            const token = JWT.generate ({
                 _id: result[0]._id,
                 username: result[0].username
             }, "1d")

@@ -1,7 +1,4 @@
-<!--
- * @作者: kerwin
- * @公众号: 大前端私房菜
--->
+
 <template>
     <div>
         <Particles
@@ -99,7 +96,7 @@ const submitForm = ()=>{
         }
     })
     //2. 拿到表单内容,提交后台
-
+    
     //3. 设置token
     // localStorage.setItem("token", "kerwin");
 }

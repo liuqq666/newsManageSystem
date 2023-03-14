@@ -1,26 +1,15 @@
+function debounce(fn,delay){
+  let time  = null;
+  return function(){
+    clearTimeout(time);
+    time = setTimeout(() => {
+      fn.apply(this,arguments);
+    }, delay);
+  }
+}
 
- 
+function go(){
+  console.log("qqq");
+}
 
-setTimeout(() => console.log('a'));
-
-Promise.resolve().then(
-
-    () => console.log('b')
- 
-  ).then(
- 
-    () => Promise.resolve('c').then(
- 
-      (data) => {
- 
-        setTimeout(() => console.log('d'));
- 
-        console.log('f');
- 
-        return data;
- 
-      }
- 
-    )
- 
-  ).then(data => console.log(data));
+window.addEventListener('click', go)

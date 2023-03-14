@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function debounce(fn,delay){
+  let time  = null;
+  let ans = 1;
+  return function(){
+    ans++;
+    clearTimeout(time);
+    time = setTimeout(() => {
+      fn.apply(this,arguments);
+      console.log(ans);
+    }, delay);
+  }
+}
+
+function go(){
+  console.log("qqq");
+}
+
+window.addEventListener('click', debounce(go,2000))
+</script>
+</html>
